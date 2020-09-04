@@ -1,0 +1,40 @@
+$total:24;
+
+@function column-width($col) {  
+    @return percentage($col/$total);  
+}
+
+@for $i from 1 through $total {  
+    .z-col-#{$i}{ width: column-width($i) };  
+}
+
+//响应式布局媒体查询
+@media only screen and (max-width: 768px){
+    @for $i from 1 through $total {  
+        .z-col-xs-#{$i}{ width: column-width($i) };  
+    }
+}
+
+@media only screen and (min-width: 768px){
+    @for $i from 1 through $total {  
+        .z-col-sm-#{$i}{ width: column-width($i) };  
+    }
+}
+
+@media only screen and (min-width: 992px){
+    @for $i from 1 through $total {  
+        .z-col-md-#{$i}{ width: column-width($i) };  
+    }
+}
+
+@media only screen and (min-width: 1200px){
+    @for $i from 1 through $total {  
+        .z-col-lg-#{$i}{ width: column-width($i) };  
+    }
+}
+
+@media only screen and (min-width: 1920x){
+    @for $i from 1 through $total {  
+        .z-col-xl-#{$i}{ width: column-width($i) };  
+    }
+}
