@@ -7,7 +7,7 @@ function resolve(dir) {
 const name = process.env.VUE_APP_BASE_NAME || "Vue Data Admin";
 
 module.exports = {
-  publicPath: "/",
+  publicPath: "./",
   outputDir: "dist",
   lintOnSave: false,
   productionSourceMap: false,
