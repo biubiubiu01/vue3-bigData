@@ -13,7 +13,7 @@ import { selectCityData } from "@/api/chart";
 export default {
   name: "cityCount",
   setup() {
-    let { abcode, year, parentInfo } = useResize();
+    let { abcode, year, parentInfo, routerChange } = useResize();
 
     const cityCount = ref(null);
     let myChart = ref(null);
@@ -190,6 +190,14 @@ export default {
         },
         true
       );
+
+      myChart.getZr().off("click");
+      myChart.getZr().on("click", (params) => {
+        const pointInPixel = [params.offsetX, params.offsetY];
+        if (myChart.containPixel("grid", pointInPixel) || xData.length === 0) {
+          routerChange("/more");
+        }
+      });
     };
 
     watch(

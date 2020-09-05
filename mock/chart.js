@@ -102,7 +102,7 @@ module.exports = [
         data: [
           {
             name: "18岁以下",
-            value: parseInt(Math.random() * 1000),
+            value: parseInt(Math.random() * 1200),
           },
           {
             name: "18-25",
@@ -110,19 +110,19 @@ module.exports = [
           },
           {
             name: "25-35",
-            value: parseInt(Math.random() * 2500),
-          },
-          {
-            name: "35-50",
             value: parseInt(Math.random() * 1800),
           },
           {
+            name: "35-50",
+            value: parseInt(Math.random() * 1700),
+          },
+          {
             name: "50-65",
-            value: parseInt(Math.random() * 1200),
+            value: parseInt(Math.random() * 1500),
           },
           {
             name: "65以上",
-            value: parseInt(Math.random() * 1000),
+            value: parseInt(Math.random() * 1400),
           },
         ],
       };

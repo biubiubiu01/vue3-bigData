@@ -13,7 +13,7 @@ import { selectYearValue } from "@/api/mockChart";
 export default {
   name: "liquidChart",
   setup() {
-    let { abcode, year, parentInfo } = useResize();
+    let { abcode, year, parentInfo, routerChange } = useResize();
 
     const liquidChart = ref(null);
     let myChart = ref(null);
@@ -119,6 +119,11 @@ export default {
         },
         true
       );
+
+      myChart.off("click");
+      myChart.on("click", () => {
+        routerChange("/more");
+      });
     };
 
     watch(

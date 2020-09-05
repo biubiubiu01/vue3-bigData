@@ -3,7 +3,7 @@
     <span class="label">销售总量</span>
     <div
       class="box-item"
-      v-for="(item, index) in value.toString()"
+      v-for="(item, index) in endVal.toString()"
       :key="index"
     >
       <span>{{ item }}</span>
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
 export default {
   name: "countTo",
   props: {
@@ -25,8 +25,49 @@ export default {
       type: String,
       default: "",
     },
+    speed: {
+      type: Number,
+      default: 0,
+    },
   },
-  setup(props, context) {},
+  setup(props, context) {
+    let endVal = ref(0);
+
+    watchEffect(() => {
+      if (props.value === 0) {
+        return;
+      }
+      endVal.value = 0;
+      var speed = Math.floor(props.value / props.speed);
+      var index = 1;
+      if (timer) {
+        clearInterval(timer);
+      }
+      var timer = setInterval(function() {
+        if (endVal.value < props.value) {
+          //优化最后几帧的效果，如果不加这个判断，那么这个值就会超出输入的值，要等到下一个判断触发时在进入值超出的判断，而且是直接强行赋值，导致效果很僵硬
+          if (speed * index > props.value) {
+            let step = props.value - speed * (index - 1);
+            endVal.value += step;
+            clearInterval(timer);
+            timer = null;
+            return;
+          }
+          endVal.value = speed * index;
+          index++;
+        } else {
+          endVal.value = props.value;
+          clearInterval(timer);
+          timer = null;
+          return;
+        }
+      }, props.speed);
+    });
+
+    return {
+      endVal,
+    };
+  },
 };
 </script>
 
@@ -51,7 +92,6 @@ export default {
     width: 30px;
     height: 40px;
     line-height: 40px;
-    color: #f0933f;
     font-size: 1.4rem;
     writing-mode: vertical-lr;
     text-orientation: upright;

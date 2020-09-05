@@ -21,7 +21,7 @@
         </div>
       </z-col>
       <z-col :span="10">
-        <count-to :value="sum" suffix="万" />
+        <count-to :value="sum" suffix="万" :speed="20" />
         <div style="width:100%;height:85%">
           <scatter-map />
         </div>
@@ -30,7 +30,7 @@
         <div class="echartList">
           <div class="chart-item">
             <box-container :boxTitle="year + '年客户年龄分布'">
-              <box-chart />
+              <funnel-chart />
             </box-container>
           </div>
           <div class="chart-item">
@@ -59,7 +59,7 @@ import {
   typeCount,
   scatterMap,
   wordChart,
-  boxChart,
+  funnelChart,
   lineChart,
   liquidChart,
 } from "./components";
@@ -76,7 +76,7 @@ export default {
     typeCount,
     scatterMap,
     wordChart,
-    boxChart,
+    funnelChart,
     lineChart,
     liquidChart,
     fourAngel,

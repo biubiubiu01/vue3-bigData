@@ -19,6 +19,7 @@ export default {
       setCommitYear,
       setCommitMapInfo,
       setCommitSum,
+      removeCommitMapInfo,
     } = useResize();
 
     let myChart = ref(null);
@@ -63,8 +64,9 @@ export default {
 
     //渲染echarts图
     const initEcharts = (data) => {
-      myChart = echarts.init(scatterMap.value);
-      if (parentInfo.length === 1) {
+      myChart = echarts.init(scatterMap.value || scatterMap);
+
+      if (parentInfo.value.length === 1) {
         echarts.registerMap("china", geoJson.value); //注册
       } else {
         echarts.registerMap("map", geoJson.value); //注册
@@ -81,7 +83,7 @@ export default {
             data: timeData,
             axisType: "category",
             autoPlay: true,
-            playInterval: 10000,
+            playInterval: 8000,
             left: "10%",
             right: "10%",
             bottom: "0%",
@@ -202,7 +204,7 @@ export default {
               {
                 name: year.value + "销售额度",
                 type: "map",
-                map: parentInfo.length === 1 ? "china" : "map",
+                map: parentInfo.value.length === 1 ? "china" : "map",
                 roam: true,
                 zoom: 1.25,
                 tooltip: {
@@ -291,23 +293,29 @@ export default {
         getMapData();
       });
 
-      myChart.off("click");
-      myChart.on("click", (params) => {
-        if (!params.data) {
-          return;
+      myChart.getZr().off("click");
+      myChart.getZr().on("click", (params) => {
+        if (params.target) {
+          if (params.target.dataIndex) {
+            const index = params.target.dataIndex;
+            if (
+              parentInfo.value[parentInfo.value.length - 1].code ==
+              data[index].adcode
+            ) {
+              return;
+            }
+            setCommitMapInfo({
+              cityName: data[index].name,
+              code: data[index].adcode,
+            });
+            getMapJson();
+          }
+        } else {
+          if (parentInfo.value.length === 1) {
+            return;
+          }
+          removeCommitMapInfo(parentInfo.value.length - 1);
         }
-        if (
-          parentInfo.value[parentInfo.value.length - 1].code ==
-          params.data.adcode
-        ) {
-          return;
-        }
-        let data = params.data;
-        setCommitMapInfo({
-          cityName: data.name,
-          code: data.adcode,
-        });
-        getMapJson();
       });
     };
 

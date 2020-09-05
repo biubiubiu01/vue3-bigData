@@ -12,7 +12,7 @@ import { selectTypeData } from "@/api/mockChart";
 export default {
   name: "typeCount",
   setup() {
-    let { abcode, year, parentInfo } = useResize();
+    let { abcode, year, parentInfo, routerChange } = useResize();
 
     const typeCount = ref(null);
     let myChart = ref(null);
@@ -169,6 +169,14 @@ export default {
         },
         true
       );
+
+      myChart.getZr().off("click");
+      myChart.getZr().on("click", (params) => {
+        const pointInPixel = [params.offsetX, params.offsetY];
+        if (myChart.containPixel("series", pointInPixel) || data.length === 0) {
+          routerChange("/more");
+        }
+      });
     };
 
     watch(

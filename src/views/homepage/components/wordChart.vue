@@ -5,7 +5,7 @@
 <script>
 import echarts from "echarts";
 require("echarts-wordcloud");
-import { onMounted, onBeforeUnmount, ref, watch } from "vue";
+import { onMounted, onBeforeUnmount, ref, watch, routerChange } from "vue";
 import { debounce } from "@/utils/index.js";
 import useResize from "@/componentApi/useResize.js";
 import { selectWordData } from "@/api/mockChart";
@@ -13,7 +13,7 @@ import { selectWordData } from "@/api/mockChart";
 export default {
   name: "wordChart",
   setup() {
-    let { abcode, year, parentInfo } = useResize();
+    let { abcode, year, parentInfo, routerChange } = useResize();
 
     const wordChart = ref(null);
     let myChart = ref(null);
@@ -109,6 +109,11 @@ export default {
         },
         true
       );
+
+      myChart.off("click");
+      myChart.on("click", () => {
+        routerChange("/more");
+      });
     };
 
     watch(

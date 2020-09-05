@@ -12,7 +12,7 @@ import { selectOtherData } from "@/api/mockChart";
 export default {
   name: "lineChart",
   setup() {
-    let { abcode, year, parentInfo } = useResize();
+    let { abcode, year, parentInfo, routerChange } = useResize();
 
     const lineChart = ref(null);
     let myChart = ref(null);
@@ -102,7 +102,7 @@ export default {
           ],
           legend: {
             show: true,
-            left: "0",
+            left: "15",
             top: "0",
             itemWidth: 15,
             itemHeight: 11,
@@ -215,6 +215,14 @@ export default {
         },
         true
       );
+      myChart.off("click");
+      myChart.getZr().off("click");
+      myChart.getZr().on("click", (params) => {
+        const pointInPixel = [params.offsetX, params.offsetY];
+        if (myChart.containPixel("grid", pointInPixel) || data.length === 0) {
+          routerChange("/more");
+        }
+      });
     };
 
     watch(

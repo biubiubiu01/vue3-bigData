@@ -1,5 +1,5 @@
 <template>
-  <div class="chart-wrapper" ref="boxChart"></div>
+  <div class="chart-wrapper" ref="funnelChart"></div>
 </template>
 
 <script>
@@ -10,11 +10,11 @@ import useResize from "@/componentApi/useResize.js";
 import { selectBoxChartData } from "@/api/mockChart";
 
 export default {
-  name: "boxChart",
+  name: "funnelChart",
   setup() {
-    let { abcode, year, parentInfo } = useResize();
+    let { abcode, year, parentInfo, routerChange } = useResize();
 
-    const boxChart = ref(null);
+    const funnelChart = ref(null);
     let myChart = ref(null);
 
     const resizeHandler = debounce(() => {
@@ -43,19 +43,16 @@ export default {
 
     //渲染echarts图
     const initEcharts = (data) => {
-      myChart = echarts.init(boxChart.value);
+      myChart = echarts.init(funnelChart.value);
       myChart.setOption(
         {
           color: [
-            "#87cefa",
-            "#6495ed",
-            "#3FC9D8",
-            "#9fe6b8",
-            "#e7bcf3",
-            "#0E7CE2",
-            "#FF8352",
-            "#E271DE",
-            "#4AEAB0",
+            "#01E1FF",
+            "#ED65A9",
+            "#11AAFF",
+            "#B9FFFF",
+            "#3064F3",
+            "#FF905A",
           ],
           title: {
             show: data.length === 0,
@@ -107,6 +104,11 @@ export default {
         },
         true
       );
+
+      myChart.off("click");
+      myChart.on("click", () => {
+        routerChange("/more");
+      });
     };
 
     watch(
@@ -126,7 +128,7 @@ export default {
     );
 
     return {
-      boxChart,
+      funnelChart,
     };
   },
 };

@@ -1,8 +1,11 @@
 import { computed } from "vue";
 import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 
 export default function() {
   const store = useStore();
+  const router = useRouter();
+
   let abcode = computed(
     () => store.state.mapInfo[store.state.mapInfo.length - 1].code
   );
@@ -22,6 +25,9 @@ export default function() {
   const setCommitSum = (val) => {
     store.commit("SET_SUM", val);
   };
+  const routerChange = (val) => {
+    router.push(val);
+  };
 
   return {
     abcode,
@@ -32,5 +38,6 @@ export default function() {
     setCommitSum,
     removeCommitMapInfo,
     setCommitMapInfo,
+    routerChange,
   };
 }

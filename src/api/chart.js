@@ -3,8 +3,6 @@
 
 import { getMapInfo } from "@/utils";
 
-const year = [2016, 2017, 2018, 2019, 2020];
-
 /**
  *  获取最近5年的城市销售额度    模拟数据，这里year属性就不用了
  *  @param {string}  abcode  城市code
@@ -13,7 +11,7 @@ const year = [2016, 2017, 2018, 2019, 2020];
  */
 export function selectCityData({ abcode, year } = params) {
   return new Promise((resolve, reject) => {
-    getMapInfo(abcode.value)
+    getMapInfo(abcode)
       .then((data) => {
         const mapData = data.map((item) => {
           return {
