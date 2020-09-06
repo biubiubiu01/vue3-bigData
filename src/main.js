@@ -7,9 +7,6 @@ import "@/styles/index.scss";
 
 import "@UI/styles/ui.scss";
 
-import { mockXHR } from "../mock";
-mockXHR();
-
 createApp(App)
   .use(store)
   .use(router)
