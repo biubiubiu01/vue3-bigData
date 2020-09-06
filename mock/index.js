@@ -1,5 +1,4 @@
 const Mock = require("mockjs");
-const qs = require("qs");
 const { param2Obj } = require("./utils");
 
 const chart = require("./chart");
@@ -27,7 +26,7 @@ function mockXHR() {
         const { body, type, url } = options;
         result = respond({
           method: type,
-          body: qs.parse(body),
+          body: JSON.parse(body),
           query: param2Obj(url),
         });
       } else {
