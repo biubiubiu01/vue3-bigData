@@ -44,15 +44,17 @@ export default {
     //通过高德获取geoJson数据
     const getMapJson = async () => {
       geoJson.value = await getGeoJson(abcode.value, geoJson.value);
+
       getMapData();
     };
 
     //模拟接口，获取echarts数据
     const getMapData = async () => {
       let { data } = await selectCityData({
-        abcode,
-        year,
+        abcode: abcode.value,
+        year: year.value,
       });
+
       let sum = data.reduce((t, c) => t + parseFloat(c.value), 0);
       setCommitSum(parseFloat(sum.toFixed(1)));
 
@@ -298,17 +300,19 @@ export default {
         if (params.target) {
           if (params.target.dataIndex) {
             const index = params.target.dataIndex;
-            if (
-              parentInfo.value[parentInfo.value.length - 1].code ==
-              data[index].adcode
-            ) {
-              return;
+            if (data[index]) {
+              if (
+                parentInfo.value[parentInfo.value.length - 1].code ==
+                data[index].adcode
+              ) {
+                return;
+              }
+              setCommitMapInfo({
+                cityName: data[index].name,
+                code: data[index].adcode,
+              });
+              getMapJson();
             }
-            setCommitMapInfo({
-              cityName: data[index].name,
-              code: data[index].adcode,
-            });
-            getMapJson();
           }
         } else {
           if (parentInfo.value.length === 1) {
