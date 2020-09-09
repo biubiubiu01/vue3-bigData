@@ -25,7 +25,7 @@
 
 同时，这里我还写了个[vue3.0](https://github.com/vuejs/vue-next) 新特性方法的文章，包含vue2.0常用的各种方法在vue3.0中的使用。
 
-- [vue3.0,你想知道的这里都有](https://juejin.im/post/6869283086169800717)
+- [vue3.0,你想知道的这里都有](https://juejin.im/post/6870392360946106382)
 
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0906/163002_d44d3025_7647779.png "home.png")
