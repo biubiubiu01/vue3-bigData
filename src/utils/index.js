@@ -63,21 +63,22 @@ export function getGeoJson(adcode, geoJson = []) {
 
 export function getMapInfo(abcode) {
   return new Promise((resolve, reject) => {
-    var district = new AMap.DistrictSearch();
-    district.search(abcode, function(status, result) {
-      if (status != "complete") {
-        reject(new Error("获取地图数据失败"));
-        return;
-      }
-      const data = result.districtList[0];
-      if (
-        (data.level === "district" &&
-          data.districtList[0].level === "street") ||
-        !data.districtList
-      ) {
-        resolve([data]);
-      }
-      resolve(data.districtList);
-    });
+      var districtSearch = new AMap.DistrictSearch()
+      districtSearch.search(abcode.value, function(status, result) {
+        if (status != "complete") {
+          reject(new Error("获取地图数据失败"));
+          return;
+        }
+        const data = result.districtList[0];
+        if (
+          (data.level === "district" &&
+            data.districtList[0].level === "street") ||
+          !data.districtList
+        ) {
+          resolve([data]);
+        }
+        resolve(data.districtList);
+      });
+
   });
 }

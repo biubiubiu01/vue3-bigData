@@ -1,5 +1,6 @@
 import axios from "axios";
-import qs from "qs";
+const {stringify} = require('query-string');
+
 
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
@@ -114,9 +115,10 @@ http.get = function(url, params) {
  */
 
 http.post = function(url, params) {
+  console.log(params)
   return new Promise((resolve, reject) => {
     service
-      .post(url, qs.stringify(params))
+      .post(url, stringify(params))
       .then((res) => {
         resolve(res.data);
       })
