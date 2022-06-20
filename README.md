@@ -16,8 +16,7 @@
     <a href="https://github.com/biubiubiu01/vue3-bigData/issues">提出新特性</a>
   </p>
   
-## 最新
-由于高德api不让使用了，要求除非能提供公益证明，不然都看做商用，所以目前地图模板暂时不能使用，正在解决中...
+
 
 ## 简介
 
