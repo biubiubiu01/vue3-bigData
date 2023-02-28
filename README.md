@@ -22,6 +22,8 @@
 
 [vue3-bigData](https://gist006.gitee.io/vue3-bigdata)是一个可视化系统，基于[vue3.0](https://github.com/vuejs/vue-next) 和 [echarts](https://github.com/apache/incubator-echarts)实现，使用vue的最新的技术栈，包括各种可视化图表。
 
+> vue3-basic-admin后台管理系统(强烈推荐！),地址：[vue3-basic-admin](https://github.com/biubiubiu01/vue3-basic-admin)
+
 > vue-antd-admin后台管理系统，有兴趣可以看看：[vue-antd-admin](https://github.com/biubiubiu01/vue-antd-admin)
 
 > react-antd-admin后台管理系统,地址：[reacct-antd-admin](https://github.com/biubiubiu01/react-antd-admin)
