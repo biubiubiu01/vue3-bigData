@@ -136,12 +136,10 @@ npm run test
 
 ## 捐赠
 
-开源不易，若觉得这个项目对你有用，可以点个[star](https://github.com/biubiubiu01/vue3-bigData)，欢迎提出建议和bug :smile: 。如果这个项目对你有所帮助，可以给作者买杯咖啡，欢迎投喂，任意金额捐赠加好友问题咨询。
+开源不易，若觉得这个项目对你有用，可以点个[star](https://github.com/biubiubiu01/vue3-bigData)，欢迎提出建议和bug :smile: 。如果这个项目对你有所帮助，可以给作者买杯咖啡，欢迎投喂，捐赠加好友问题咨询。
 
 <img src="https://i.328888.xyz/2023/02/28/zV27Q.jpeg" alt="alipay" width="250"><img src="https://i.328888.xyz/2023/02/28/zVw2H.jpeg" alt="wechat" width="250">
 
-## 扫码领大红包啦，有朋友领到88元大红包
-<img src="https://i.328888.xyz/2023/04/24/iSolbq.jpeg" alt="alipay" width="250">
 
 
 
